@@ -6,21 +6,20 @@
 
 Meet **OPSd**. The unique and effortless way of managing cloud infrastructure.
 
-# terraform-module-template
+# terraform-module-digitalocean-backend
 
 ## Introduction
 
-What does the module provide?
+A Terraform module designed to provision an S3 bucket on DigitalOcean specifically tailored for storing Terraform state files.
 
 ## Usage
 
 ```hcl
-module "module_name" {
-  source  = "github.com/opsd-io/module_name?ref=v0.0.1"
+module "tfstate_backend" {
+  source = "github.com/opsd-io/terraform-module-digitalocean-backend?ref=VERSION"
 
-  # Variables
-  variable_1 = "foo"
-  variable_2 = "bar"
+  name   = "terraform-backend-example2"
+  region = "nyc3"
 }
 ```
 
@@ -31,11 +30,14 @@ module "module_name" {
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.3.1 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.5.5 |
+| <a name="requirement_digitalocean"></a> [digitalocean](#requirement\_digitalocean) | >= 2.34.1 |
 
 ## Providers
 
-No providers.
+| Name | Version |
+|------|---------|
+| <a name="provider_digitalocean"></a> [digitalocean](#provider\_digitalocean) | >= 2.34.1 |
 
 ## Modules
 
@@ -43,15 +45,28 @@ No modules.
 
 ## Resources
 
-No resources.
+| Name | Type |
+|------|------|
+| [digitalocean_spaces_bucket.state](https://registry.terraform.io/providers/digitalocean/digitalocean/latest/docs/resources/spaces_bucket) | resource |
 
 ## Inputs
 
-No inputs.
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| <a name="input_name"></a> [name](#input\_name) | The name of the bucket. | `string` | n/a | yes |
+| <a name="input_noncurrent_version_expiration"></a> [noncurrent\_version\_expiration](#input\_noncurrent\_version\_expiration) | Specifies the number of days after which an object's non-current versions expire. | `number` | `90` | no |
+| <a name="input_region"></a> [region](#input\_region) | The region where the resources resides. | `string` | n/a | yes |
+| <a name="input_versioning"></a> [versioning](#input\_versioning) | Enable bucket versioning. | `bool` | `true` | no |
 
 ## Outputs
 
-No outputs.
+| Name | Description |
+|------|-------------|
+| <a name="output_bucket_domain_name"></a> [bucket\_domain\_name](#output\_bucket\_domain\_name) | The FQDN of the bucket. |
+| <a name="output_endpoint"></a> [endpoint](#output\_endpoint) | The FQDN of the bucket without the bucket name. |
+| <a name="output_name"></a> [name](#output\_name) | The name of the bucket. |
+| <a name="output_region"></a> [region](#output\_region) | The region where the resources resides. |
+| <a name="output_urn"></a> [urn](#output\_urn) | The uniform resource name of the bucket. |
 <!-- END_TF_DOCS -->
 
 ## Examples of usage
