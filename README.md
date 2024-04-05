@@ -62,6 +62,7 @@ No modules.
 
 | Name | Description |
 |------|-------------|
+| <a name="output_backend_config"></a> [backend\_config](#output\_backend\_config) | The backend configuration, which can be saved to `backend.tf` file. |
 | <a name="output_bucket_domain_name"></a> [bucket\_domain\_name](#output\_bucket\_domain\_name) | The FQDN of the bucket. |
 | <a name="output_endpoint"></a> [endpoint](#output\_endpoint) | The FQDN of the bucket without the bucket name. |
 | <a name="output_name"></a> [name](#output\_name) | The name of the bucket. |
