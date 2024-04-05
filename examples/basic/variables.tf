@@ -3,6 +3,7 @@ variable "digitalocean_token" {
   type        = string
   default     = null
 }
+
 variable "spaces_access_id" {
   description = "The access key ID used for Spaces API operations. Defaults to the value of the SPACES_ACCESS_KEY_ID."
   type        = string
