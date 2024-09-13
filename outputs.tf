@@ -31,10 +31,14 @@ output "backend_config" {
         skip_region_validation      = true # avoid "Invalid AWS Region" error
         skip_credentials_validation = true # skips calling sts:GetCallerIdentity
         skip_metadata_api_check     = true # skips EC2 Metadata API
+        skip_requesting_account_id  = true
+        skip_s3_checksum            = true
 
-        region   = "${digitalocean_spaces_bucket.state.region}"
-        endpoint = "${digitalocean_spaces_bucket.state.endpoint}"
-        bucket   = "${digitalocean_spaces_bucket.state.name}"
+        region    = "${digitalocean_spaces_bucket.state.region}"
+        endpoints = {
+          s3 = "https://${digitalocean_spaces_bucket.state.endpoint}"
+        }
+        bucket    = "${digitalocean_spaces_bucket.state.name}"
         # The `key` should be in `backend-config.tfvars` or set via `-backend-config` flag.
       }
     }
